@@ -31,7 +31,14 @@ function DetailPage() {
               <h2>{space.title}</h2>
               <p>{space.description}</p>
             </div>
-            {space.stories && space.stories.map((story) => story.name)}
+            {space.stories &&
+              space.stories.map((story) => (
+                <div>
+                  <h2>{story.name}</h2>
+                  <p>{story.content}</p>
+                  <img src={story.imageUrl} alt="" width="500" />
+                </div>
+              ))}
           </div>
         )}
       </div>
