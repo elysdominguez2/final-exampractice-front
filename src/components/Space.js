@@ -1,7 +1,9 @@
+// import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSpaces } from "../store/spaces/thunks";
 import { selectSpaces } from "../store/spaces/selectors";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Space() {
   const dispatch = useDispatch();
@@ -19,14 +21,22 @@ function Space() {
       {!spaces.length ? (
         "Loading"
       ) : (
-        <ul>
+        <div>
           {spaces.map((space) => (
-            <li key={space.id}>
+            <div
+              key={space.id}
+              style={{
+                backgroundColor: space.backgroundColor, //PASO 28 en mis anotaciones
+                color: space.color,
+              }}
+            >
               <h2>{space.title}</h2>
               <p>{space.description}</p>
-            </li>
+
+              <Link to={`/spaces/${space.id}`}>Visit Space</Link>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

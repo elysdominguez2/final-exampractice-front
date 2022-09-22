@@ -13,14 +13,22 @@ export const spaceSlice = createSlice({
       state.loading = true;
     },
     spacesFetched: (state, action) => {
-      console.log("spacesFetched action", action);
+      //   console.log("spacesFetched action", action);
 
       state.loading = false;
       state.spaces = action.payload;
     },
+
+    spacesFetchedById: (state, action) => {
+      console.log("spacesFetchedbyId action", action);
+
+      state.loading = false;
+      state.spaceDetails = action.payload;
+    },
   },
 });
 
-export const { startLoading, spacesFetched } = spaceSlice.actions;
+export const { startLoading, spacesFetched, spacesFetchedById } =
+  spaceSlice.actions;
 
 export default spaceSlice.reducer;
