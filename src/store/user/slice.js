@@ -24,9 +24,18 @@ export const userSlice = createSlice({
     tokenStillValid: (state, action) => {
       state.profile = action.payload.user;
     },
+
+    deleteStoryAction: (state, action) => {
+      //Creo este slice para el boton de borrar que pongo en MySpace para poder borrar una historia concreta
+      const storyId = action.payload;
+      state.space.stories = state.space.stories.filter(
+        (story) => story.id !== storyId
+      );
+    },
   },
 });
 
-export const { loginSuccess, logOut, tokenStillValid } = userSlice.actions;
+export const { loginSuccess, logOut, tokenStillValid, deleteStoryAction } =
+  userSlice.actions;
 
 export default userSlice.reducer;
