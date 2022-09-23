@@ -24,7 +24,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/spaces/:id" element={<DetailPage />} />
-        <Route path="/me" element={<MySpace />} />
+        <Route path="/myspace" element={<MySpace />} />
       </Routes>
     </div>
   );

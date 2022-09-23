@@ -18,7 +18,7 @@ export const SignUp = () => {
 
   useEffect(() => {
     if (token !== null) {
-      navigate("/me"); //modifique este me pero antes era solo /
+      navigate("/myspace"); //modifique este me pero antes era solo /
     }
   }, [token, navigate]);
 

@@ -27,7 +27,7 @@ export const Navigation = () => {
 
         {token ? (
           <div>
-            <MenuLink to="/me">My Space</MenuLink>
+            <MenuLink to="/myspace">My Space</MenuLink>
             <button onClick={() => dispatch(logOut())}>Logout</button>
           </div>
         ) : (
