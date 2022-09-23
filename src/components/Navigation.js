@@ -24,9 +24,12 @@ export const Navigation = () => {
       </Hamburger>
       <Menu open={open}>
         <MenuLink to="/">Spaces</MenuLink>
-        <MenuLink to="/empty2">Empty 2</MenuLink>
+
         {token ? (
-          <button onClick={() => dispatch(logOut())}>Logout</button>
+          <div>
+            <MenuLink to="/me">My Space</MenuLink>
+            <button onClick={() => dispatch(logOut())}>Logout</button>
+          </div>
         ) : (
           <MenuLink to="/login">Login</MenuLink>
         )}
