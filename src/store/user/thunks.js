@@ -9,6 +9,7 @@ import {
   tokenStillValid,
   deleteStoryAction,
   postStoryAction,
+  editMySpaceAction,
 } from "./slice";
 
 export const signUp = (name, email, password) => {
@@ -158,6 +159,31 @@ export const postNewStoryByUserId = (name, content, imageUrl) => {
         showMessageWithTimeout("success", false, "New story created!", 1500)
       );
       dispatch(postStoryAction(response.data.story));
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+};
+
+//EDITAR EL SPACIO DESDE MYSPACE
+export const editMySpaceByUserId = (
+  title,
+  description,
+  backgroundColor,
+  color
+) => {
+  return async (dispatch, getState) => {
+    try {
+      const { space, token } = getState().user;
+      const response = await axios.put(
+        `${apiUrl}/spaces/${space.id}`,
+        { title, description, backgroundColor, color },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      dispatch(
+        showMessageWithTimeout("success", false, "Update successfull", 3000)
+      );
+      dispatch(editMySpaceAction(response.data.space));
     } catch (e) {
       console.log(e.message);
     }

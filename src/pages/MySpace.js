@@ -8,6 +8,7 @@ import {
   selectUser,
 } from "../store/user/selectors"; //Tambien traigo toda la data del usuario tengo de el incluido nuestro nuevo space que cree en el SELECTOR del user
 import { deleteStory } from "../store/user/thunks";
+import EditMySpace from "../components/EditMySpace";
 
 function MySpace() {
   //const profile = useSelector(selectUser);
@@ -24,6 +25,8 @@ function MySpace() {
 
   //Esconder Formulario de Agregar historia
   const [showFormAddStory, setShowFormAddStory] = useState(false);
+  //Esconder el Formulario de modificar mySpace
+  const [editFormMySpace, setEditFormMySpace] = useState(false);
 
   if (token === null) {
     navigate("/");
@@ -49,6 +52,15 @@ function MySpace() {
         <p>{space.description}</p>
       </div>
       <div>
+        <button
+          onClick={() => {
+            setEditFormMySpace(!editFormMySpace);
+          }}
+        >
+          {editFormMySpace ? "Close" : "Edit my space"}
+        </button>
+        {editFormMySpace && <EditMySpace />}
+
         <button
           onClick={() => {
             setShowFormAddStory(!showFormAddStory);

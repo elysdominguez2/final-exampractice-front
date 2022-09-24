@@ -30,6 +30,12 @@ export const userSlice = createSlice({
       state.space.stories = [action.payload, ...state.space.stories];
     },
 
+    //ACA VA EL UPDATE QUE PUEDO HACER COMO USUARIO A MYSPACE
+    editMySpaceAction: (state, action) => {
+      state.space = { ...action.payload, stories: state.space.stories };
+    },
+
+    //ACA VA LA ACCION DE BORRAR HISTORIAS
     deleteStoryAction: (state, action) => {
       //Creo este slice para el boton de borrar que pongo en MySpace para poder borrar una historia concreta
       const storyId = action.payload;
@@ -46,6 +52,7 @@ export const {
   tokenStillValid,
   deleteStoryAction,
   postStoryAction,
+  editMySpaceAction,
 } = userSlice.actions;
 
 export default userSlice.reducer;

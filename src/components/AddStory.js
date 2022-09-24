@@ -18,11 +18,14 @@ function AddStory() {
     //con esto vacio los inputs para el futuro
     setName("");
     setContent("");
+    setImageUrl(
+      "https://egthreads.com/wp-content/uploads/2022/03/no-preview-1.png"
+    );
   };
 
   return (
     <div>
-      <h1>Hello from AddStory</h1>
+      <h3>Add a new story Bro!</h3>
       <form onSubmit={submitNewStory}>
         <label>
           Name:
