@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux"; //Traigo use Selector l
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import AddStory from "../components/AddStory";
 import {
   selectToken,
@@ -16,9 +17,13 @@ function MySpace() {
   const dispatch = useDispatch();
   //   const mySpace = useSelector(selectMySpace);
 
+  //Boton para borrar historias
   const onDelete = (id) => {
     dispatch(deleteStory(id));
   };
+
+  //Esconder Formulario de Agregar historia
+  const [showFormAddStory, setShowFormAddStory] = useState(false);
 
   if (token === null) {
     navigate("/");
@@ -44,8 +49,14 @@ function MySpace() {
         <p>{space.description}</p>
       </div>
       <div>
-        <button>Post a cool story bro</button>
-        <AddStory />
+        <button
+          onClick={() => {
+            setShowFormAddStory(!showFormAddStory);
+          }}
+        >
+          {showFormAddStory ? "Close" : "Post a cool story bro"}
+        </button>
+        {showFormAddStory && <AddStory />}
       </div>
       {space.stories.map((story) => {
         return (
