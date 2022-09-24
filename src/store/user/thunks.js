@@ -154,6 +154,9 @@ export const postNewStoryByUserId = (name, content, imageUrl) => {
         }
       );
       //console.log("Response postNewStoryByUserId", response);
+      dispatch(
+        showMessageWithTimeout("success", false, "New story created!", 1500)
+      );
       dispatch(postStoryAction(response.data.story));
     } catch (e) {
       console.log(e.message);

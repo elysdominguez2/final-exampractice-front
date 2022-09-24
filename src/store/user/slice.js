@@ -27,10 +27,7 @@ export const userSlice = createSlice({
     },
     //ACA VAN LAS NUEVAS HISTORIAS QUE CREO COMO USUARIO
     postStoryAction: (state, action) => {
-      //state.space = { ...action.payload, stories: state.space.stories };
-      //state.user.space.stories = [action.payload.story, ...state.user.space.stories];
       state.space.stories = [action.payload, ...state.space.stories];
-      //state.space.stories.push(action.payload);
     },
 
     deleteStoryAction: (state, action) => {
