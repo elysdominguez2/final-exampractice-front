@@ -8,6 +8,7 @@ import {
   logOut,
   tokenStillValid,
   deleteStoryAction,
+  postStoryAction,
 } from "./slice";
 
 export const signUp = (name, email, password) => {
@@ -134,6 +135,28 @@ export const getUserWithStoredToken = () => {
       // get rid of the token by logging out
       dispatch(logOut());
       dispatch(appDoneLoading());
+    }
+  };
+};
+
+//POST A NEW STORY cuando estoy en MySpace logueado
+export const postNewStoryByUserId = (name, content, imageUrl) => {
+  return async (dispatch, getState) => {
+    try {
+      const { space, token } = getState().user;
+      const response = await axios.post(
+        `${apiUrl}/spaces/${space.id}/stories`,
+        { name, content, imageUrl },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      //console.log("Response postNewStoryByUserId", response);
+      dispatch(postStoryAction(response.data.story));
+    } catch (e) {
+      console.log(e.message);
     }
   };
 };

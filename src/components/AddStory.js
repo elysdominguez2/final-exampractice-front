@@ -1,14 +1,19 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { postNewStoryByUserId } from "../store/user/thunks";
 
 function AddStory() {
+  const dispatch = useDispatch();
+
   const [name, setName] = useState("");
   const [content, setContent] = useState("");
   const [imageUrl, setImageUrl] = useState(
-    "https://images.squarespace-cdn.com/content/5898e29c725e25e7132d5a5a/1487546591045-NJLLE20UXLVGZ9XHL47Y/600x400-Image-Placeholder.jpg?content-type=image%2Fjpeg"
+    "https://egthreads.com/wp-content/uploads/2022/03/no-preview-1.png"
   );
 
   const submitNewStory = (event) => {
     event.preventDefault();
+    dispatch(postNewStoryByUserId(name, content, imageUrl));
 
     //con esto vacio los inputs para el futuro
     setName("");

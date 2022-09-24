@@ -25,6 +25,13 @@ export const userSlice = createSlice({
       state.profile = action.payload.user;
       state.space = action.payload.space;
     },
+    //ACA VAN LAS NUEVAS HISTORIAS QUE CREO COMO USUARIO
+    postStoryAction: (state, action) => {
+      //state.space = { ...action.payload, stories: state.space.stories };
+      //state.user.space.stories = [action.payload.story, ...state.user.space.stories];
+      state.space.stories = [action.payload, ...state.space.stories];
+      //state.space.stories.push(action.payload);
+    },
 
     deleteStoryAction: (state, action) => {
       //Creo este slice para el boton de borrar que pongo en MySpace para poder borrar una historia concreta
@@ -36,7 +43,12 @@ export const userSlice = createSlice({
   },
 });
 
-export const { loginSuccess, logOut, tokenStillValid, deleteStoryAction } =
-  userSlice.actions;
+export const {
+  loginSuccess,
+  logOut,
+  tokenStillValid,
+  deleteStoryAction,
+  postStoryAction,
+} = userSlice.actions;
 
 export default userSlice.reducer;
