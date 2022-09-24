@@ -99,6 +99,8 @@ export const login = (email, password) => {
 
 export const getUserWithStoredToken = () => {
   return async (dispatch, getState) => {
+    console.log("Start: getUserWithStoredToken");
+
     // get token from the state
     const token = selectToken(getState());
 
@@ -114,8 +116,14 @@ export const getUserWithStoredToken = () => {
       });
 
       // token is still valid
-      dispatch(tokenStillValid({ user: response.data }));
+      dispatch(
+        tokenStillValid({
+          user: response.data.user,
+          space: response.data.space,
+        })
+      ); //
       dispatch(appDoneLoading());
+      console.log("End success: getUserWithStoredToken");
     } catch (error) {
       if (error.response) {
         console.log(error.response.message);

@@ -1,10 +1,15 @@
 import { useSelector, useDispatch } from "react-redux"; //Traigo use Selector l
 import { useNavigate } from "react-router-dom";
-import { selectToken, selectMySpace } from "../store/user/selectors"; //Tambien traigo toda la data del usuario tengo de el incluido nuestro nuevo space que cree en el SELECTOR del user
+import AddStory from "../components/AddStory";
+import {
+  selectToken,
+  selectMySpace,
+  selectUser,
+} from "../store/user/selectors"; //Tambien traigo toda la data del usuario tengo de el incluido nuestro nuevo space que cree en el SELECTOR del user
 import { deleteStory } from "../store/user/thunks";
 
 function MySpace() {
-  //   const profile = useSelector(selectUser);
+  //const profile = useSelector(selectUser);
   const token = useSelector(selectToken);
   const space = useSelector(selectMySpace);
   const navigate = useNavigate();
@@ -37,6 +42,10 @@ function MySpace() {
       >
         <h2>{space.title}</h2>
         <p>{space.description}</p>
+      </div>
+      <div>
+        <button>Post a cool story bro</button>
+        <AddStory />
       </div>
       {space.stories.map((story) => {
         return (
